@@ -1,0 +1,4 @@
+hostname.nix
+.*syncthing*
+*sync-conflict*
+.stversions/*
