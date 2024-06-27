@@ -237,7 +237,7 @@ in {
 
         ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[blue]%}(%{$fg[blue]%}"
         ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%} %{$fg[red]%}%1{*%}%{$fg[blue]%})"
-        ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%})"
+        ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%}*)"
         ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
       '';
 
