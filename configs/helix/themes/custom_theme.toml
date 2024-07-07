@@ -1,2 +1,2 @@
-inherits = "catppuccin_mocha"
-"ui.background" = { bg = "#11111b" }
+inherits = "rose_pine"
+"ui.background" = { bg = "#171718" }

@@ -57,12 +57,6 @@ require("lazy").setup({
 	{
 		"stevearc/oil.nvim",
 	},
-	{
-		"stevearc/oil.nvim",
-	},
-	-- {
-	-- 	"windwp/nvim-autopairs",
-	-- },
 	{ "rose-pine/neovim", name = "rose-pine" },
 	{
 		"windwp/nvim-autopairs",
@@ -97,11 +91,11 @@ require("lazy").setup({
 			"onsails/lspkind.nvim",
 		},
 	},
-	-- {
-	-- 	"L3MON4D3/LuaSnip",
-	-- 	tag = "V2.*",
-	-- 	build = "LUA_LDLIBS=-lluajit5.1 make install_jsregexp",
-	-- },
+	{
+		"L3MON4D3/LuaSnip",
+		-- tag = "V2.*",
+		build = "LUA_LDLIBS=-lluajit5.1 make install_jsregexp",
+	},
 	{
 		"rebelot/kanagawa.nvim",
 	},
@@ -137,17 +131,17 @@ require("lazy").setup({
 			require("neomodern").load()
 		end,
 	},
-	{
-		"unisonweb/unison",
-		branch = "trunk",
-		config = function(plugin)
-			vim.opt.rtp:append(plugin.dir .. "/editor-support/vim")
-			require("lazy.core.loader").packadd(plugin.dir .. "/editor-support/vim")
-		end,
-		init = function(plugin)
-			require("lazy.core.loader").ftdetect(plugin.dir .. "/editor-support/vim")
-		end,
-	},
+	-- {
+	-- 	"unisonweb/unison",
+	-- 	branch = "trunk",
+	-- 	config = function(plugin)
+	-- 		vim.opt.rtp:append(plugin.dir .. "/editor-support/vim")
+	-- 		require("lazy.core.loader").packadd(plugin.dir .. "/editor-support/vim")
+	-- 	end,
+	-- 	init = function(plugin)
+	-- 		require("lazy.core.loader").ftdetect(plugin.dir .. "/editor-support/vim")
+	-- 	end,
+	-- },
 	-- {
 	-- 	"iamcco/markdown-preview.nvim",
 	-- 	cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },

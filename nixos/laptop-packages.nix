@@ -62,7 +62,7 @@
     # vscode-fhs
     # wezterm
     # xdg-desktop-portal-gtk
-    # zed-editor
+    zed-editor
     air
     anki-bin
     argocd
@@ -207,6 +207,11 @@
     zsh-you-should-use
     zsh-autosuggestions
     zsh-syntax-highlighting
+    openapi-generator-cli
     zsh-powerlevel10k
+    sqlitebrowser
+    postman
+    helix-gpt
+    helix
   ];
 }

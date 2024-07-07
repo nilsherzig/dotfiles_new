@@ -1,8 +1,11 @@
-theme = "kanagawa"
+# theme = "kanagawa"
+# theme = "custom_theme"
+# theme = "base16_default_dark"
+theme = "jetbrains_dark"
 
 [keys.normal]
-tab = "move_parent_node_end"
-S-tab = "move_parent_node_start"
+# tab = "move_parent_node_end"
+# S-tab = "move_parent_node_start"
 
 C-h = "select_prev_sibling"
 C-j = "shrink_selection"
@@ -11,20 +14,17 @@ C-l = "select_next_sibling"
 
 "H" = ":buffer-previous"
 "L" = ":buffer-next"
-D = ["ensure_selections_forward", "extend_to_line_end", "delete_selection", "insert_mode"]
+# D = ["ensure_selections_forward", "extend_to_line_end", "delete_selection", "insert_mode"]
 "C-r" = ":reload-all"
 "C-q" = ":bc"
 
-[keys.insert]
-S-tab = "move_parent_node_start"
-# "C-k" = "show_or_next_copilot_completion"
-# "C-j" = "hide_or_prev_copilot_completion"
-# "C-h" = "apply_copilot_completion"
+# [keys.insert]
+# "C-e" = "copilot_show_completion" # show a copilot completion  (if one exists) (only useful if auto-render is false)
 # "C-w" = "copilot_apply_completion"  # technically only this mapping is necessary
 
 [keys.select]
-tab = "extend_parent_node_end"
-S-tab = "extend_parent_node_start"
+# tab = "extend_parent_node_end"
+# S-tab = "extend_parent_node_start"
 
 [editor]
 # idle-timeout = 0
@@ -47,9 +47,9 @@ auto-format = true
 # mode.select = "SELECT"
 
 [editor.indent-guides]
-# render = true
-# character = "╎" # Some characters that work well: "▏", "┆", "┊", "⸽"
-# skip-levels = 1
+render = true
+character = "▏" # Some characters that work well: "▏", "┆", "┊", "⸽"
+skip-levels = 1
 
 [editor.soft-wrap]
 enable = true
@@ -58,9 +58,8 @@ max-wrap = 25 # increase value to reduce forced mid-word wrapping
 max-indent-retain = 0
 
 [editor.lsp]
-display-inlay-hints = true 
+# display-inlay-hints = true 
 # display-messages = true
-# copilot-auto = true 
  
 [editor.cursor-shape]
 insert = "bar"
