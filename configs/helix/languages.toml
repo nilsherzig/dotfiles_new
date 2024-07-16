@@ -6,7 +6,7 @@ language-servers = [ "vscode-html-language-server", "tailwindcss-ls" ]
 [[language]]
 name = "go"
 auto-format = true
-language-servers = [ "gopls", "golang-lint-langserver", "ai" ]
+language-servers = [ "gopls", "golangci-lint-lsp", "ai" ]
 
 [[language]]
 name = "svelte"
@@ -61,3 +61,9 @@ ltex.dictionary = { "en-US" = [
 [language-server.ai]
 command = "helix-gpt"
 args = ["--handler", "copilot"]
+
+[language-server.golangci-lint-lsp]
+command = "golangci-lint-langserver"
+
+[language-server.golangci-lint-lsp.config]
+command = ["golangci-lint", "run", "--out-format", "json", "--issues-exit-code=1"]
