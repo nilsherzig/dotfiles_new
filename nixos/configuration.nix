@@ -44,7 +44,7 @@ in {
   };
 
   security.rtkit.enable = true;
-  sound.enable = true;
+  # sound.enable = true;
   system.autoUpgrade.enable = true;
   time.timeZone = "Europe/Berlin";
 
@@ -194,7 +194,7 @@ in {
           "git"
           "kubectx"
           "fzf"
-          "thefuck"
+          # "thefuck"
           "zoxide"
           "safe-paste"
           # "zsh-syntax-highlighting"

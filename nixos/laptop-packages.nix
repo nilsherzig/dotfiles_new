@@ -9,7 +9,9 @@
 # in {
 {
   fonts.packages = with pkgs; [
+    inter
     cantarell-fonts
+    geist-font
     iosevka
     vollkorn
     fira-code
@@ -33,7 +35,7 @@
     # factorio
     # gnome-extension-manager
     # gnome.dconf-editor
-    # gnome.gnome-tweaks
+    gnome-tweaks
     # gnome.polari
     # gnomeExtensions.auto-move-windows
     # gnomeExtensions.impatience
@@ -66,7 +68,7 @@
     air
     anki-bin
     argocd
-    asciinema
+    # asciinema
     atuin
     bluetuith
     brightnessctl
@@ -165,8 +167,6 @@
     powertop
     pyright
     python3
-    python311Packages.pylatexenc
-    python311Packages.python-lsp-server
     qalculate-gtk
     ranger
     rclone
@@ -200,7 +200,7 @@
     zathura
     zellij
     zoxide
-    thefuck
+    # thefuck
     gci
     ledger-live-desktop
     zsh-syntax-highlighting
@@ -213,5 +213,11 @@
     postman
     helix-gpt
     helix
+    teams
+    foliate
+    sysprof
+    nmap
+    jellyfin-media-player
+    bc
   ];
 }
