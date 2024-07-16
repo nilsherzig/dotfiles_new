@@ -53,15 +53,15 @@ is_projects_subdir() {
     esac
 }
 
-# Function to check if current time is between 6 AM and 6 PM
-is_daytime() {
+# Function allow projects without check between 5pm and 10pm
+time_not_okay() {
     local current_hour
 
     current_hour=$(date +%H)
-    if [ "$current_hour" -ge 6 ] && [ "$current_hour" -lt 18 ]; then
-        return 0
-    else
+    if [ "$current_hour" -ge 17 ] && [ "$current_hour" -lt 23 ]; then
         return 1
+    else
+        return 0
     fi
 }
 
@@ -70,13 +70,15 @@ digital_wellbeing_check() {
     # Default duration is 20 seconds
     local duration=${DIGITAL_WELLBEING_DURATION:-20}
 
-    if is_projects_subdir && is_daytime; then
+    if is_projects_subdir && time_not_okay; then
         clear
         echo "Denk bitte kurz darüber nach, ob alles andere schon fertig ist. 🦀"
         echo "Du weißt ja selbst, wie schnell die Zeit dabei vergeht."
         echo ""
         echo "Denk daran, wie gut es sich anfühlt erstmal alles fertig zu haben und wie scheiße es ist, wenn man andere Leute hängen lässt."
+        echo ""
         show_loading_bar "$duration" 
+        echo ""
         echo "Viel erfolg!"
     fi
 }
