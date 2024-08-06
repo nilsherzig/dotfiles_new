@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
 
 vim.keymap.set("i", "<C-c>", "<Esc>")
-vim.keymap.set("n", "<C-c>", "<cmd>:lua MiniBufremove.delete()<CR>")
+vim.keymap.set("n", "<C-c>", "<cmd>BufferClose<CR>")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
@@ -20,8 +20,8 @@ vim.keymap.set("v", "<leader>y", "+y")
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-vim.keymap.set("n", "H", "<cmd>:bprevious<CR>")
-vim.keymap.set("n", "L", "<cmd>:bnext<CR>")
+vim.keymap.set("n", "H", "<cmd>BufferPrevious<CR>")
+vim.keymap.set("n", "L", "<cmd>BufferNext<CR>")
 
 vim.api.nvim_set_keymap("n", "<leader>go", ":G<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>gp", ":G push<CR>", { noremap = true, silent = true })

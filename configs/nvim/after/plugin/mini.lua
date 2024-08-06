@@ -1,10 +1,26 @@
 require("mini.align").setup()
--- require("mini.completion").setup()
--- require("mini.notify").setup()
 require("mini.pairs").setup()
-require("mini.pick").setup()
 require("mini.bufremove").setup()
--- require("mini.indentscope").setup()
+-- local cursorword = require("mini.cursorword")
+-- cursorword.setup({
+-- 	delay = 300,
+-- })
+
+-- local indentscope = require("mini.indentscope")
+-- indentscope.setup({
+-- 	draw = {
+-- 		animation = indentscope.gen_animation.cubic({
+-- 			duration = 5.0,
+-- 			easing = "in-out",
+-- 			unit = "step",
+-- 		}),
+-- 	},
+-- 	options = {
+-- 		try_as_border = true,
+-- 	},
+-- 	symbol = "▏",
+-- })
+--
 
 local MiniStatusline = require("mini.statusline")
 MiniStatusline.setup({
@@ -34,4 +50,4 @@ MiniStatusline.setup({
 		-- inactive = nil,
 	},
 })
-require("mini.tabline").setup()
+-- require("mini.tabline").setup()
