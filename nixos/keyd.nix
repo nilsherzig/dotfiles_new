@@ -1,5 +1,4 @@
 { ... }: {
-
   environment.etc."keyd/default.conf".text = ''
     [ids]
     0001:0001  
@@ -47,6 +46,17 @@
     l = right
   '';
 
+  systemd.services.customKeyd = {
+    description = "custom keyd";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network.target" ];
+
+    serviceConfig = {
+      ExecStart = "/home/nils/Documents/keyd/bin/keyd";
+      Restart = "always";
+      User = "root";
+    };
+  };
   services.keyd = {
     enable = false; # disabled until upstream gets lettermod
     keyboards."*".settings = {

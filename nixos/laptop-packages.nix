@@ -1,13 +1,4 @@
-{ pkgs, ... }:
-# let
-# token =
-#   lib.strings.removeSuffix "\n" (builtins.readFile /home/nils/factorio-token);
-# factorio = pkgs.factorio.override {
-#   username = "nilsdev";
-#   token = token;
-# };
-# in {
-{
+{ pkgs, ... }: {
   fonts.packages = with pkgs; [
     inter
     cantarell-fonts
@@ -21,11 +12,14 @@
     fantasque-sans-mono
   ];
 
-  # nixpkgs.config.permittedInsecurePackages = [ "electron-25.9.0" ];
-
   users.users.nils.packages = with pkgs; [
+    # activitywatch
     # android-studio
     # ansible
+    # asciinema
+    # aw-server-rust
+    # awatcher
+    # bibata-cursors
     # bottles
     # brave
     # bun
@@ -33,17 +27,23 @@
     # codespell
     # eza
     # factorio
+    # gh
     # gnome-extension-manager
     # gnome.dconf-editor
-    gnome-tweaks
     # gnome.polari
     # gnomeExtensions.auto-move-windows
     # gnomeExtensions.impatience
     # gnomeExtensions.just-perfection
+    # grml-zsh-config
+    # helix
+    # helix
     # helix
     # helix
     # helix-gpt
+    # helix-gpt
     # httpie
+    # inkscape
+    # ledger-live-desktop
     # lorri
     # mako
     # newsflash
@@ -51,12 +51,22 @@
     # nixos-generators
     # nodePackages_latest.pyright
     # ollama
+    # pagefind
+    # postman
+    # pprof
+    # rnote
     # rustup
     # sshpass
     # stremio
+    # stremio
+    # sysprof
     # tangram
+    # teams
     # terraform
     # terraform-ls
+    # texlab
+    # texliveMedium
+    # thefuck
     # trivy
     # tuxedo-rs
     # unison-ucm
@@ -64,12 +74,13 @@
     # vscode-fhs
     # wezterm
     # xdg-desktop-portal-gtk
-    zed-editor
+    # xournalpp
+    # yt-dlp
     air
     anki-bin
     argocd
-    # asciinema
     atuin
+    bc
     bluetuith
     brightnessctl
     brotab
@@ -90,13 +101,16 @@
     ffmpeg
     file
     firefox
+    foliate
     foot
     fzf
     gammastep
     gcc
+    gci
     ginkgo
     git
     glibc
+    gnome-tweaks
     gnumake
     go
     go-callvis
@@ -110,11 +124,16 @@
     gotools
     gradience
     grim
-    # grml-zsh-config
     htop
+    hubble
+    hugo
+    # hypridle
+    # hyprlock
+    # hyprpaper
     imagemagick
     jc
     jdk21
+    jellyfin-media-player
     jq
     k6
     k9s
@@ -133,9 +152,11 @@
     kustomize
     lazydocker
     lazygit
+    libbpf
     libcxxStdenv # needed to compile tressitter
     libnotify
     libqalculate
+    llvm
     localsend
     ltex-ls
     lua-language-server
@@ -146,6 +167,7 @@
     nil
     nixfmt-classic
     nixpkgs-fmt
+    nmap
     nodePackages.js-beautify
     nodePackages_latest.bash-language-server
     nodePackages_latest.prettier
@@ -158,6 +180,7 @@
     oapi-codegen
     obs-studio
     obsidian
+    openapi-generator-cli
     openssl
     openvpn
     pandoc
@@ -167,6 +190,7 @@
     powertop
     pyright
     python3
+    python312Packages.python-lsp-server
     qalculate-gtk
     ranger
     rclone
@@ -174,11 +198,12 @@
     ruff-lsp
     shellcheck
     signal-desktop
+    skopeo
     slurp
+    sqlitebrowser
     starship
     stylua
     swappy
-    swaybg
     tailwindcss
     tailwindcss-language-server
     talosctl
@@ -194,30 +219,16 @@
     wl-clipboard
     wmctrl
     wtype
-    xdg-desktop-portal-hyprland
+    # xdg-desktop-portal-hyprland
     xdg-utils
-    yt-dlp
     zathura
+    zed-editor
     zellij
     zoxide
-    # thefuck
-    gci
-    ledger-live-desktop
+    zsh-autosuggestions
+    zsh-powerlevel10k
+    zsh-syntax-highlighting
     zsh-syntax-highlighting
     zsh-you-should-use
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-    openapi-generator-cli
-    zsh-powerlevel10k
-    sqlitebrowser
-    postman
-    helix-gpt
-    helix
-    teams
-    foliate
-    sysprof
-    nmap
-    jellyfin-media-player
-    bc
   ];
 }

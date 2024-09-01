@@ -1,27 +1,7 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 let
   home-manager = builtins.fetchTarball
     "https://github.com/nix-community/home-manager/archive/master.tar.gz";
-  # inputs.neovim-nightly-overlay.url =
-  #   "github:nix-community/neovim-nightly-overlay";
-
-in let
-  fromGitHub = ref: repo:
-    pkgs.vimUtils.buildVimPlugin {
-      pname = "${lib.strings.sanitizeDerivationName repo}";
-      version = ref;
-      src = builtins.fetchGit {
-        url = "https://github.com/${repo}.git";
-        ref = ref;
-        shallow = true;
-      };
-    };
-  # neovim-nightly-overlay = (import (builtins.fetchTarball {
-  #   url =
-  #     "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
-  # }));
-  # nixpkgs = import <nixpkgs> { overlays = [ neovim-nightly-overlay ]; };
-
 in {
   home-manager.users.nils = {
     #services.opensnitch-ui.enable = true;
@@ -61,7 +41,7 @@ in {
           "svg.context-properties.content.enabled" = true;
         };
         userChrome = ''
-              @import "firefox-gnome-theme/userChrome.css";
+          @import "firefox-gnome-theme/userChrome.css";
           @import "firefox-gnome-theme/theme/colors/dark.css"; 
         '';
       };

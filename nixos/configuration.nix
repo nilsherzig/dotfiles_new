@@ -5,29 +5,31 @@ let
     2c2b13ee31dc4e37b74274aa5608c424
   '';
   work = ''
-    9c2d20d6761e4395861207cef10569e4
+    be0f441f87964e42a3c4d5533cae8214
   '';
 in {
   imports = [
     /etc/nixos/hardware-configuration.nix
-    ./sync.nix
-    ./nix-alien.nix
-    ./keyd.nix
+    ./gnome-keyring.nix
     ./home.nix
-  ] ++ lib.optional (machineID == private) ./private-laptop.nix
-    ++ lib.optional (machineID == private) ./laptop-packages.nix
-    ++ lib.optional (machineID == work) ./cynet.nix;
+    ./nix-alien.nix
+  ] ++ lib.optional (machineID == private) ./laptop-private.nix
+    ++ lib.optional (machineID == private) ./keyd.nix
+    ++ lib.optional (machineID == private || machineID == work)
+    ./laptop-packages.nix ++ lib.optional (machineID == work) ./laptop-work.nix;
 
   console.keyMap = "de";
   environment.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
     # WAYLAND_DISPLAY = "wayland-1";
-    # GTK_THEME = "adwaita:dark";
+    GTK_USE_PORTAL = "1";
+    NIXOS_OZONE_WL = "1";
+    GDK_BACKEND = "wayland,x11";
+    QT_QPA_PLATFORM = "wayland;xcb";
+    XDG_BIN_HOME = "$HOME/.local/bin";
     XDG_CACHE_HOME = "$HOME/.cache";
     XDG_CONFIG_HOME = "$HOME/.config";
     XDG_DATA_HOME = "$HOME/.local/share";
     XDG_STATE_HOME = "$HOME/.local/state";
-    XDG_BIN_HOME = "$HOME/.local/bin";
   };
   hardware = {
     bluetooth = {
@@ -44,29 +46,19 @@ in {
   };
 
   security.rtkit.enable = true;
-  # sound.enable = true;
   system.autoUpgrade.enable = true;
   time.timeZone = "Europe/Berlin";
 
   virtualisation = {
-    docker.enable = true;
+    docker = { enable = true; };
     libvirtd.enable = true;
   };
 
   boot = {
-    kernel = {
-      # sysctl = {
-      #   "fs.inotify.max_user_watches" = "1048576"; # 128 times the default 8192
-      #   "fs.inotify.max_user_instances" = "8192";
-      #   "clearcpuid" = "514";
-      # };
-    };
     extraModprobeConfig = ''
       options hid_apple fnmode=1
       options hid_apple swap_opt_cmd=1
     '';
-    # kernelParams =
-    #   [ "amd_iommu=on" "clearcpuid=514" "vm.max_map_count=1000000" ];
     initrd.systemd.network.wait-online.timeout = 0;
     loader = {
       efi.canTouchEfiVariables = true;
@@ -96,17 +88,7 @@ in {
   };
 
   systemd = {
-    services.customKeyd = {
-      description = "custom keyd";
-      wantedBy = [ "multi-user.target" ];
-      after = [ "network.target" ];
-
-      serviceConfig = {
-        ExecStart = "/home/nils/Documents/keyd/bin/keyd";
-        Restart = "always";
-        User = "root";
-      };
-    };
+    services.printing.enable = true;
     network.wait-online.enable = false;
     network.wait-online.timeout = 0;
     services.NetworkManager-wait-online.enable = false;
@@ -168,10 +150,14 @@ in {
   };
 
   programs = {
+    nix-ld.enable = true;
+
     gnupg = {
       agent.enable = true;
       agent.pinentryPackage = pkgs.pinentry-gnome3;
     };
+
+    # hyprland.enable = true;
 
     dconf.enable = true;
 
@@ -180,44 +166,18 @@ in {
       shellAliases = {
         cd = "z";
         ip = "ip --color=always";
-        # ssh = "TERM=xterm ssh";
+        ssh = "TERM=xterm ssh";
         k = "kubectl";
         update = "sudo nixos-rebuild switch --upgrade";
         lg = "lazygit";
-        # upload = "~/dotfiles/scripts/upload.sh";
         vi = "nvim";
+        vim = "nvim";
         blue = "bluetuith";
       };
+
       ohMyZsh = {
         enable = true;
-        plugins = [
-          "git"
-          "kubectx"
-          "fzf"
-          # "thefuck"
-          "zoxide"
-          "safe-paste"
-          # "zsh-syntax-highlighting"
-          # "zsh-you-should-use"
-          # "zsh-autosuggestions"
-          # "zsh-syntax-highlighting"
-          # "zsh-powerlevel10k"
-          # "zsh-abr"
-
-          # "zsh-abr"
-          # "zsh-fzf-tab"
-          # "zsh-autosuggestions"
-          # "zsh-syntax-highlighting"
-          # zsh-autosuggestions
-          # zsh-syntax-highlighting
-          # "zsh-autopair"
-          # "zsh-completions"
-          # "zsh-history-substring-search"
-          # "zsh-navigation-tools"
-          # "zsh-nvm"
-          # "zsh-dircolors-solarized"
-          # "zsh-you-should-use"
-        ];
+        plugins = [ "git" "kubectx" "fzf" "zoxide" "safe-paste" ];
       };
 
       interactiveShellInit = ''
@@ -240,14 +200,6 @@ in {
         ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
         ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
       '';
-
-      # shellInit = ''
-      #   eval "$(zoxide init zsh)"
-      #   eval "$(direnv hook zsh)"
-      #   export EDITOR=nvim;
-      #   export NODE_PATH=~/.npm-packages/lib/node_modules
-      #   export PATH=~/.npm-packages/bin:$PATH
-      # '';
     };
   };
 

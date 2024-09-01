@@ -1,10 +1,16 @@
 { ... }: {
   networking.hostName = "laptop";
-  hardware.tuxedo-rs.enable = true;
-  hardware.tuxedo-rs.tailor-gui.enable = true;
+  hardware.tuxedo-rs.enable = false;
+  hardware.tuxedo-rs.tailor-gui.enable = false;
   hardware.tuxedo-keyboard.enable = true;
-  networking.firewall.allowedTCPPorts = [ 80 443 8080 5173 11434 ];
-  networking.firewall.allowedUDPPorts = [ ];
+  networking = {
+    # trustedInterfaces = [ "virbr0" ];
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [ 80 443 8080 5173 11434 ];
+      allowedUDPPorts = [ ];
+    };
+  };
   system.stateVersion = "23.11";
 
   services = {
@@ -14,10 +20,10 @@
       KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
     '';
     power-profiles-daemon.enable = false;
-    tailscale = {
-      enable = true;
-      extraUpFlags = [ "--ssh" ];
-    };
+    # tailscale = {
+    #   enable = true;
+    #   extraUpFlags = [ "--ssh" ];
+    # };
     # i hate fan noise, while using my laptop on my lap 
     tlp = {
       enable = true;
