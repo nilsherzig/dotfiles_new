@@ -15,6 +15,7 @@ in {
     ./nix-alien.nix
   ] ++ lib.optional (machineID == private) ./laptop-private.nix
     ++ lib.optional (machineID == private) ./keyd.nix
+    ++ lib.optional (machineID == work) ./falcon.nix
     ++ lib.optional (machineID == private || machineID == work)
     ./laptop-packages.nix ++ lib.optional (machineID == work) ./laptop-work.nix;
 
