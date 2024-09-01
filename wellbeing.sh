@@ -1,45 +1,22 @@
 #!/usr/bin/env bash
 
-handle_interrupt() {
-    # echo -e "\nNo cheating"
-    sleep 0.1
-}
 
-# Function to display a loading bar
-show_loading_bar() {
-    local duration=$1
-    local bar_length=60
-    local sleep_interval 
+check_todoist() {
+    # API endpoint
+    API_URL="https://api.todoist.com/rest/v2/tasks?filter=today"
 
-    sleep_interval=$(echo "scale=3; $duration / $bar_length" | bc)
+    # Make the API request
+    response=$(curl -s -H "Authorization: Bearer $TODOIST_TOKEN" "$API_URL" | jq || return 0) 
+    length=$(echo "$response" | jq length)
 
-    trap handle_interrupt SIGINT
-
-    echo -ne "Loading: "
-    for ((i=0; i<bar_length; i++)); do
-        echo -ne "░"
-    done
-    echo -ne "\r"
-
-    barString=""
-    for ((i=0; i<bar_length; i++)); do
-        sleep "$sleep_interval"
-        barString="Loading: "
-        for ((j=0; j<=i; j++)); do
-            barString="${barString}█"
-        done
-        for ((j=i+1; j<bar_length; j++)); do
-            barString="${barString}░"
-        done
-        echo -ne "${barString}\r"
-    done
-
-    
-    # Remove the trap after the loading is complete
-    trap - SIGINT
-    
-    echo -ne "\n"
-    return 0
+    # Check if the response is empty or contains tasks
+    if [ "$length" -gt 0 ]; then
+        echo "You have $length open tasks. 🦀"
+        echo "$response" | jq '.[] | "\(.content) - Due: \(.due.string)"'
+        return 0
+    else
+        return 1
+    fi
 }
 
 # Function to check if current directory is a subdirectory of "projects"
@@ -53,33 +30,19 @@ is_projects_subdir() {
     esac
 }
 
-# Function allow projects without check between 5pm and 10pm
-time_not_okay() {
-    local current_hour
-
-    current_hour=$(date +%H)
-    if [ "$current_hour" -ge 17 ] && [ "$current_hour" -lt 23 ]; then
-        return 1
-    else
-        return 0
-    fi
-}
-
 # Main function to be called when entering a directory
 digital_wellbeing_check() {
-    # Default duration is 20 seconds
-    local duration=${DIGITAL_WELLBEING_DURATION:-20}
-
-    if is_projects_subdir && time_not_okay; then
-        clear
-        echo "Denk bitte kurz darüber nach, ob alles andere schon fertig ist. 🦀"
-        echo "Du weißt ja selbst, wie schnell die Zeit dabei vergeht."
-        echo ""
-        echo "Denk daran, wie gut es sich anfühlt erstmal alles fertig zu haben und wie scheiße es ist, wenn man andere Leute hängen lässt."
-        echo ""
-        show_loading_bar "$duration" 
-        echo ""
-        echo "Viel erfolg!"
+    if is_projects_subdir; then
+        if check_todoist; then
+            cd "$HOME" || return
+            echo "
+Denk daran, wie gut es sich anfühlt erstmal alles fertig
+zu haben und wie scheiße es ist, wenn man andere Leute 
+hängen lässt.
+Für mehr von den guten Momenten, in denen ich mit guten
+Gewissen nichts tun kann.
+"
+        fi
     fi
 }
 
