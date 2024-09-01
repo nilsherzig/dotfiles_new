@@ -5,9 +5,12 @@ let
     #! ${pkgs.bash}/bin/sh
     /run/current-system/sw/bin/mkdir -p /opt/CrowdStrike
     ln -sf ${falcon}/opt/CrowdStrike/* /opt/CrowdStrike
-    ${falcon}/bin/fs-bash -c "${falcon}/opt/CrowdStrike/falconctl -g --cid MYCOOLCID"
+    if [ -z "$COMPANYID" ]; then
+      echo "Error: COMPANYID environment variable is not set"
+      exit 1
+    fi
+    ${falcon}/bin/fs-bash -c "${falcon}/opt/CrowdStrike/falconctl -g --cid $COMPANYID"
   '';
-
 in {
   systemd.services.falcon-sensor = {
     enable = true;
@@ -25,8 +28,8 @@ in {
       Restart = "no";
       TimeoutStopSec = "60s";
       KillMode = "process";
+      EnvironmentFile = "/etc/falcon-sensor.env";
     };
     wantedBy = [ "multi-user.target" ];
   };
-
 }
