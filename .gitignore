@@ -2,4 +2,5 @@ hostname.nix
 .*syncthing*
 *sync-conflict*
 .stversions/*
+.ltex
 configs/nvim/lazy-lock.json
