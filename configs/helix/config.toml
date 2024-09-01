@@ -1,7 +1,11 @@
-# theme = "kanagawa"
 # theme = "custom_theme"
-# theme = "base16_default_dark"
-theme = "jetbrains_dark"
+# theme = "jetbrains_dark"
+# theme = "rose_pine"
+# theme = "autumn_night"
+# theme = "amberwood"
+# theme = "dark_plus"
+# theme = "github_dark"
+theme = "kanagawa"
 
 [keys.normal]
 # tab = "move_parent_node_end"
@@ -16,7 +20,7 @@ C-l = "select_next_sibling"
 "L" = ":buffer-next"
 # D = ["ensure_selections_forward", "extend_to_line_end", "delete_selection", "insert_mode"]
 "C-r" = ":reload-all"
-"C-q" = ":bc"
+"C-w" = ":buffer-close"
 
 # [keys.insert]
 # "C-e" = "copilot_show_completion" # show a copilot completion  (if one exists) (only useful if auto-render is false)
@@ -53,9 +57,6 @@ skip-levels = 1
 
 [editor.soft-wrap]
 enable = true
-max-wrap = 25 # increase value to reduce forced mid-word wrapping
-# wrap-at-text-width = true
-max-indent-retain = 0
 
 [editor.lsp]
 # display-inlay-hints = true 

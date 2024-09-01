@@ -1,2 +1,2 @@
-inherits = "rose_pine"
-"ui.background" = { bg = "#171718" }
+inherits = "dark_plus"
+"ui.statusline" = { bg = "borders" }
