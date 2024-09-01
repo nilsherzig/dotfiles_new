@@ -1,13 +1,16 @@
-`dotfiles` 🐈
+# Dotfiles 🐈
 
-### Uses 
+## Uses 
 
 I mainly use my machine to take nodes, write Golang code and manage / develop Kubernetes and networking related things.
 
+
 Multiple machines and their boot drives, network settings, screen res, installed packages and fonts, key binds and even their wallpapers are configured using this repo. 
+
 A big thank you to everyone who has ever contributed to the packages I use :).
 
-### Current setup
+
+## Current setup
 
 | Use case                 | program(s)                          |
 |--------------------------|-------------------------------------|
@@ -22,4 +25,5 @@ A big thank you to everyone who has ever contributed to the packages I use :).
 | file sync                | syncthing                           |
 | browser                  | firefox                             |
 | homelab                  | k3s with argocd                     |
-# dotfiles_new
+
+# doing api things
