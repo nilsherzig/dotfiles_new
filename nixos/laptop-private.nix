@@ -7,7 +7,7 @@
     # trustedInterfaces = [ "virbr0" ];
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 80 443 8080 5173 11434 ];
+      allowedTCPPorts = [ 8080 ];
       allowedUDPPorts = [ ];
     };
   };
