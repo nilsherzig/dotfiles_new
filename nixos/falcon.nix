@@ -9,7 +9,7 @@ let
       echo "Error: COMPANYID environment variable is not set"
       exit 1
     fi
-    ${falcon}/bin/fs-bash -c "${falcon}/opt/CrowdStrike/falconctl -g --cid $COMPANYID"
+    ${falcon}/bin/fs-bash -c "${falcon}/opt/CrowdStrike/falconctl -s --cid=$COMPANYID"
   '';
 in {
   systemd.services.falcon-sensor = {
