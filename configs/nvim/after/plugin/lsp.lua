@@ -24,7 +24,9 @@ lsp.preset("recommended")
 lspconfig.ruff_lsp.setup({})
 lspconfig.eslint.setup({})
 lspconfig.bashls.setup({})
-lspconfig.ltex.setup({})
+lspconfig.ltex.setup({
+	filetypes = { "markdown" },
+})
 lspconfig.lua_ls.setup({
 	settings = {
 		Lua = {
