@@ -1,4 +1,4 @@
-{ stdenv, pkgs, lib, dpkg, fetchurl, openssl, libnl, buildFHSUserEnv, ... }:
+{ stdenv, lib, dpkg, buildFHSUserEnv, ... }:
 
 let
   pname = "falcon-sensor";
@@ -6,7 +6,7 @@ let
   arch = "amd64";
   src = /opt/CrowdStrike + "/${pname}_${version}_${arch}.deb";
 
-  falcon-sensor = stdenv.mkDerivation rec {
+  falcon-sensor = stdenv.mkDerivation {
     inherit version arch src;
     buildInputs = [ dpkg ];
     name = pname;
