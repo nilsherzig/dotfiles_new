@@ -2,7 +2,6 @@
   fonts.packages = with pkgs; [
     inter
     cantarell-fonts
-    geist-font
     iosevka
     vollkorn
     fira-code
